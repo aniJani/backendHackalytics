@@ -47,3 +47,25 @@ async def list_datasets(
             )
         )
     return DatasetListResponse(datasets=datasets)
+
+
+@router.get("/head")
+async def get_dataset_head(
+    dataset_id: str = Query(..., description="ID of the dataset")
+):
+    db = get_db()
+    # Find the dataset record by its ObjectId
+    dataset = await db.datasets.find_one({"_id": ObjectId(dataset_id)})
+    if not dataset:
+        raise HTTPException(status_code=404, detail="Dataset not found")
+
+    file_path = dataset["file_path"]
+    try:
+        # analyze_dataset returns a summary and the DataFrame.
+        summary, _ = analyze_dataset(file_path)
+    except Exception as e:
+        raise HTTPException(
+            status_code=400, detail=f"Error analyzing dataset: {str(e)}"
+        )
+
+    return summary
