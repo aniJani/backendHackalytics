@@ -6,9 +6,10 @@ client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
 def chat_with_assistant(messages, dataset_context: str):
     # Create an initial instruction that includes the entire dataset content
-    initial_instruction = f"""You are a data visualization expert and data analyst. Below is the complete dataset:
+    initial_instruction = f"""You are a data visualization expert and data analyst. Avoid any formal structure, bullet points, headings, or lists. Keep the response short, engaging, and to the point. Focus on answering naturally without over-explaining. Avoid symbols like * or #. Below is the complete dataset:
 {dataset_context}
-Please answer the user's query in a conversational manner, similar to ChatGPT."""
+When responding to the user's query, provide clear, concise answers in a conversational tone. 
+Avoid unnecessary formatting, technical jargon, or long explanations."""
 
     formatted_messages = [{"role": "user", "content": initial_instruction}] + messages
 

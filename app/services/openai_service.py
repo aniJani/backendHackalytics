@@ -11,7 +11,16 @@ Requirements:
 2. Create clear, well-labeled visualizations.
 3. Include proper titles and labels.
 4. Use appropriate color schemes.
-5. Handle different data types appropriately.
+5. Use only these libraries: 
+pandas
+matplotlib
+seaborn
+pydantic-settings
+python-multipart
+scikit-learn
+statsmodels
+prophet
+6. Handle different data types appropriately.
 Do not include plt.show() in the code.
 
 Dataset info: {dataset_info}
