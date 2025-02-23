@@ -9,7 +9,7 @@ app = FastAPI(title="Dashboard App API")
 origins = [
     "http://localhost:3000",  # frontend URL
     "http://localhost:8000",
-    "cname.vercel-dns.com",  # or any other allowed origins
+    "https://infolaya.vercel.app/",  # or any other allowed origins
     # you can add more origins or use ["*"] to allow all (not recommended for production)
 ]
 
