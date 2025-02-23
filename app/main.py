@@ -8,7 +8,8 @@ app = FastAPI(title="Dashboard App API")
 # Set up CORS settings
 origins = [
     "http://localhost:3000",  # frontend URL
-    "http://localhost:8000",  # or any other allowed origins
+    "http://localhost:8000",
+    "cname.vercel-dns.com",  # or any other allowed origins
     # you can add more origins or use ["*"] to allow all (not recommended for production)
 ]
 
