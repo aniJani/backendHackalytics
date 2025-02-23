@@ -23,7 +23,7 @@ A powerful dashboard API built with FastAPI that provides data visualization, an
 1. Clone the repository:
 ```bash
 git clone https://github.com/aniJani/backendHackalytics/tree/main
-cd fastapi-dashboard
+cd fbackendHackalytics
 ```
 
 2. Create and activate a virtual environment:
