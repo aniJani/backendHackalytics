@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import dataset, visualization, chatbot, insights
+from app.routers import dataset, visualization, chatbot, insights, fred
 from app.utils.database import init_db
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -35,6 +35,7 @@ app.include_router(
 #     chatbot.router, prefix="/api/chatbot", tags=["chatbot"]
 # )  # this is useless
 app.include_router(insights.router, prefix="/api/insights", tags=["insights"])
+app.include_router(fred.router, prefix="/api/fred", tags=["fred"])
 
 
 @app.get("/")

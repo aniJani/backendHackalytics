@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     )
     MONGODB_DBNAME: str = "dashboard_db"
     OPENAI_API_KEY: str = "your_openai_api_key"  # Replace with your actual key
+    FRED_API_KEY: str = "your_fred_api_key"  # Replace with your actual key
 
     class Config:
         env_file = ".env"
