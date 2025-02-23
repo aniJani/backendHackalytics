@@ -3,6 +3,7 @@ from fastapi import APIRouter, UploadFile, File, Form, HTTPException, Query
 from app.utils.file_handler import save_file
 from app.models.database_models import DatasetModel
 from app.models.schema import DatasetListResponse, DatasetInfo
+from app.services.visualization_service import analyze_dataset
 from app.utils.database import get_db
 from bson import ObjectId
 
