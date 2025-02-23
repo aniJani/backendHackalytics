@@ -7,18 +7,19 @@ app = FastAPI(title="Dashboard App API")
 
 # Set up CORS settings
 origins = [
-    "http://localhost:3000",  # frontend URL
+    "http://localhost:3000",
     "http://localhost:8000",
-    "https://infolaya.vercel.app/",  # or any other allowed origins
-    # you can add more origins or use ["*"] to allow all (not recommended for production)
+    "https://infolaya.vercel.app",  # Vercel domain
+    "https://www.infolaya.tech",  # Custom domain
+    "https://infolaya.tech",  # Root domain (if needed)
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # Allow requests from these origins
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
