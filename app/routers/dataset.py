@@ -1,4 +1,3 @@
-# app/routers/dataset.py
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, Query
 from app.utils.file_handler import save_file
 from app.models.database_models import DatasetModel
@@ -6,8 +5,24 @@ from app.models.schema import DatasetListResponse, DatasetInfo
 from app.services.visualization_service import analyze_dataset
 from app.utils.database import get_db
 from bson import ObjectId
+import math
 
 router = APIRouter()
+
+
+def clean_data(data):
+    """
+    Recursively cleans data by replacing non-finite floats (NaN, Infinity) with None.
+    """
+    if isinstance(data, float):
+        # If the float is finite, return it; otherwise return None.
+        return data if math.isfinite(data) else None
+    elif isinstance(data, dict):
+        return {k: clean_data(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [clean_data(item) for item in data]
+    else:
+        return data
 
 
 @router.post("/upload")
@@ -64,6 +79,8 @@ async def get_dataset_head(
     try:
         # analyze_dataset returns a summary and the DataFrame.
         summary, _ = analyze_dataset(file_path)
+        # Clean the summary data to ensure all float values are JSON compliant.
+        summary = clean_data(summary)
     except Exception as e:
         raise HTTPException(
             status_code=400, detail=f"Error analyzing dataset: {str(e)}"
